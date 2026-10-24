@@ -1,13 +1,9 @@
 
-FROM python:3.12-slim
+FROM nginx:alpine
 
-WORKDIR /app
+COPY index.html /usr/share/nginx/html/index.html
+COPY style.css /usr/share/nginx/html/style.css
+COPY script.js /usr/share/nginx/html/script.js
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 80
 
-COPY . .
-
-EXPOSE 5000
-
-CMD ["python", "app.py"]
